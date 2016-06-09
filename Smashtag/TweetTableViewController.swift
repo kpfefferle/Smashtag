@@ -9,7 +9,7 @@
 import UIKit
 import Twitter
 
-class TweetTableViewController: UITableViewController {
+class TweetTableViewController: UITableViewController, UITextFieldDelegate {
 
     // MARK: Model
 
@@ -56,7 +56,6 @@ class TweetTableViewController: UITableViewController {
         super.viewDidLoad()
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
-        searchText = "#cbj"
     }
 
     // MARK: - UITableViewDataSource
@@ -82,6 +81,19 @@ class TweetTableViewController: UITableViewController {
         }
 
         return cell
+    }
+
+    @IBOutlet weak var searchTextField: UITextField! {
+        didSet {
+            searchTextField.delegate = self
+            searchTextField.text = searchText
+        }
+    }
+
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        searchText = textField.text
+        return true
     }
 
     /*
