@@ -67,15 +67,19 @@ class TweetTableViewController: UITableViewController {
         return tweets[section].count
     }
 
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
+    private struct Storyboard {
+        static let TweetCellIdentifier = "Tweet"
+    }
 
-        // Configure the cell...
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.TweetCellIdentifier, forIndexPath: indexPath)
+
+        let tweet = tweets[indexPath.section][indexPath.row]
+        cell.textLabel?.text = tweet.text
+        cell.detailTextLabel?.text = "@\(tweet.user.screenName)"
 
         return cell
     }
-    */
 
     /*
     // MARK: - Navigation
