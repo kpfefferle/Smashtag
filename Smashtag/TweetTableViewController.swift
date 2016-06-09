@@ -10,8 +10,31 @@ import UIKit
 
 class TweetTableViewController: UITableViewController {
 
+    // MARK: Model
+
+    var tweets = [Array<Tweet>]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+
+    var searchText: String? {
+        didSet {
+            tweets.removeAll()
+            searchForTweets()
+            title = searchText
+        }
+    }
+
+    private func searchForTweets() {
+
+    }
+
+    // MARK: View
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        searchText = "#cbj"
     }
 
     // MARK: - UITableViewDataSource
