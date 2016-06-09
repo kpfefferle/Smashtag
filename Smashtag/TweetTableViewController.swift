@@ -27,8 +27,27 @@ class TweetTableViewController: UITableViewController {
         }
     }
 
-    private func searchForTweets() {
+    private var twitterRequest: Twitter.Request? {
+        if let query = searchText where !query.isEmpty {
+            return Twitter.Request(search: query + " -filter:retweets", count: 100)
+        }
+        return nil
+    }
 
+    private var lastTwitterRequest: Twitter.Request?
+
+    private func searchForTweets() {
+        if let request = twitterRequest {
+            lastTwitterRequest = request
+            request.fetchTweets { [ weak weakSelf = self ] newTweets in
+                dispatch_async(dispatch_get_main_queue()) {
+                    if request == weakSelf?.lastTwitterRequest &&
+                      !newTweets.isEmpty {
+                        weakSelf?.tweets.insert(newTweets, atIndex: 0)
+                    }
+                }
+            }
+        }
     }
 
     // MARK: View
