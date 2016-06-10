@@ -11,10 +11,10 @@ import Twitter
 
 class TweetTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var tweetScreenNameLabel: UILabel!
-    @IBOutlet weak var tweetTextLabel: UILabel!
-    @IBOutlet weak var tweetProfileImageView: UIImageView!
-    @IBOutlet weak var tweetCreatedLabel: UILabel!
+    @IBOutlet private weak var tweetScreenNameLabel: UILabel!
+    @IBOutlet private weak var tweetTextLabel: UILabel!
+    @IBOutlet private weak var tweetProfileImageView: UIImageView!
+    @IBOutlet private weak var tweetCreatedLabel: UILabel!
 
     var tweet: Twitter.Tweet? {
         didSet {

@@ -79,7 +79,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         return cell
     }
 
-    @IBOutlet weak var searchTextField: UITextField! {
+    @IBOutlet private weak var searchTextField: UITextField! {
         didSet {
             searchTextField.delegate = self
             searchTextField.text = searchText

@@ -11,7 +11,7 @@ import Twitter
 
 class MediaTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var mediaImage: UIImageView!
+    @IBOutlet private weak var mediaImage: UIImageView!
 
     var mediaItem: Twitter.MediaItem? {
         didSet {

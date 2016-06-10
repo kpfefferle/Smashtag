@@ -13,7 +13,7 @@ class MentionTableViewController: UITableViewController {
 
     // MARK: Model
 
-    var mentions = [Array<AnyObject>]() {
+    private var mentions = [Array<AnyObject>]() {
         didSet {
             tableView.reloadData()
         }
