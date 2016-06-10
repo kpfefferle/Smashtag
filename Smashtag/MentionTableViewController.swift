@@ -19,17 +19,17 @@ class MentionTableViewController: UITableViewController {
         }
     }
 
-    private let tweetSections = [
-        "media",
-        "hashtags",
-        "userMentions",
-        "urls"
+    private let sectionTypes = [
+        (key: "media", title: "Images", cell: Storyboard.MediaCellIdentifier),
+        (key: "hashtags", title: "Hashtags", cell: Storyboard.MentionCellIdentifier),
+        (key: "userMentions", title: "Users", cell: Storyboard.MentionCellIdentifier),
+        (key: "urls", title: "URLs", cell: Storyboard.MentionCellIdentifier)
     ]
 
     var tweet: Twitter.Tweet? {
         didSet {
             mentions.removeAll()
-            for key in tweetSections {
+            for (key,_,_) in sectionTypes {
                 if let mentionArray = tweet?.valueForKey(key) as? [AnyObject] {
                     mentions.append(mentionArray)
                 }
@@ -50,33 +50,24 @@ class MentionTableViewController: UITableViewController {
         return mentions[section].count
     }
 
-    private let sectionTitles = [
-        "Images",
-        "Hashtags",
-        "Users",
-        "URLs"
-    ]
-
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if mentions[section].count > 0 {
-            return sectionTitles[section]
+            return sectionTypes[section].title
         } else {
             return nil
         }
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell: UITableViewCell!
+        let cell = tableView.dequeueReusableCellWithIdentifier(sectionTypes[indexPath.section].cell, forIndexPath: indexPath)
 
         let mention = mentions[indexPath.section][indexPath.row]
 
         if let mediaItem = mention as? Twitter.MediaItem {
-            cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.MediaCellIdentifier, forIndexPath: indexPath)
             if let cell = cell as? MediaTableViewCell {
                 cell.mediaItem = mediaItem
             }
         } else if let mention = mention as? Twitter.Mention {
-            cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.MentionCellIdentifier, forIndexPath: indexPath)
             cell.textLabel?.text = mention.keyword
         }
 
