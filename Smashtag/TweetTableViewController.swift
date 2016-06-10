@@ -68,10 +68,6 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         return tweets[section].count
     }
 
-    private struct Storyboard {
-        static let TweetCellIdentifier = "Tweet"
-    }
-
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.TweetCellIdentifier, forIndexPath: indexPath)
 
@@ -96,14 +92,19 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         return true
     }
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let destinationVC = segue.destinationViewController as? MentionTableViewController,
+          let indexPath = tableView?.indexPathForSelectedRow
+          where segue.identifier == Storyboard.ShowMentionsSegue {
+            destinationVC.tweet = tweets[indexPath.section][indexPath.row]
+        }
     }
-    */
+
+    private struct Storyboard {
+        static let TweetCellIdentifier = "Tweet"
+        static let ShowMentionsSegue = "Show Mentions"
+    }
 
 }

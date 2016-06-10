@@ -81,7 +81,7 @@
                                     <outlet property="tweetProfileImageView" destination="DEX-V3-OpP" id="eTK-EH-1Fy"/>
                                     <outlet property="tweetScreenNameLabel" destination="ijC-xa-3RO" id="kEg-To-adb"/>
                                     <outlet property="tweetTextLabel" destination="NqQ-eu-J0F" id="Nj0-8b-AhO"/>
-                                    <segue destination="XHm-7S-Ijc" kind="show" id="Qte-Fa-9Rr"/>
+                                    <segue destination="XHm-7S-Ijc" kind="show" identifier="Show Mentions" id="Qte-Fa-9Rr"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -108,12 +108,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="YON-nY-9EW">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Mention" textLabel="Bd6-tk-d88" style="IBUITableViewCellStyleDefault" id="YON-nY-9EW">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YON-nY-9EW" id="cub-cv-C6U">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bd6-tk-d88">
+                                            <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
