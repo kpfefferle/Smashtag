@@ -108,14 +108,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Mention" textLabel="Bd6-tk-d88" style="IBUITableViewCellStyleDefault" id="YON-nY-9EW">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Media Cell" rowHeight="260" id="YON-nY-9EW" customClass="MediaTableViewCell" customModule="Smashtag" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="260"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YON-nY-9EW" id="cub-cv-C6U">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="259.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RU4-MV-DTo">
+                                            <rect key="frame" x="8" y="8" width="584" height="244"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="RU4-MV-DTo" firstAttribute="trailing" secondItem="cub-cv-C6U" secondAttribute="trailingMargin" id="Lgr-tE-1Pq"/>
+                                        <constraint firstItem="RU4-MV-DTo" firstAttribute="leading" secondItem="cub-cv-C6U" secondAttribute="leadingMargin" id="dnl-zn-PLz"/>
+                                        <constraint firstItem="RU4-MV-DTo" firstAttribute="top" secondItem="cub-cv-C6U" secondAttribute="top" constant="8" id="gnv-fS-ChP"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="RU4-MV-DTo" secondAttribute="bottom" id="k1h-EG-Brx"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="mediaImage" destination="RU4-MV-DTo" id="abu-6x-0JF"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Mention Cell" textLabel="Ls2-gC-Cdq" style="IBUITableViewCellStyleDefault" id="4PL-CA-Xjq">
+                                <rect key="frame" x="0.0" y="352" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4PL-CA-Xjq" id="shR-qX-apC">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Bd6-tk-d88">
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Ls2-gC-Cdq">
                                             <rect key="frame" x="15" y="0.0" width="570" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>

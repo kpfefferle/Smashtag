@@ -40,14 +40,6 @@ class MentionTableViewController: UITableViewController {
         }
     }
 
-    // MARK: View
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.estimatedRowHeight = tableView.rowHeight
-        tableView.rowHeight = UITableViewAutomaticDimension
-    }
-
     // MARK: - Table view data source
 
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -74,16 +66,31 @@ class MentionTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.DemoCellIdentifier, forIndexPath: indexPath)
+        var cell: UITableViewCell!
 
         let mention = mentions[indexPath.section][indexPath.row]
+
         if let mediaItem = mention as? Twitter.MediaItem {
-            cell.textLabel?.text = String(mediaItem.url)
+            cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.MediaCellIdentifier, forIndexPath: indexPath)
+            if let cell = cell as? MediaTableViewCell {
+                cell.mediaItem = mediaItem
+            }
         } else if let mention = mention as? Twitter.Mention {
+            cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.MentionCellIdentifier, forIndexPath: indexPath)
             cell.textLabel?.text = mention.keyword
         }
 
         return cell
+    }
+
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let mention = mentions[indexPath.section][indexPath.row]
+
+        if let mediaItem = mention as? Twitter.MediaItem {
+            return tableView.frame.width / CGFloat(mediaItem.aspectRatio)
+        } else {
+            return tableView.rowHeight
+        }
     }
 
     /*
@@ -97,6 +104,7 @@ class MentionTableViewController: UITableViewController {
     */
 
     private struct Storyboard {
-        static let DemoCellIdentifier = "Mention"
+        static let MediaCellIdentifier = "Media Cell"
+        static let MentionCellIdentifier = "Mention Cell"
     }
 }

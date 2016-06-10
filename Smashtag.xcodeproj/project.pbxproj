@@ -16,6 +16,7 @@
 		0AC5F59C1D0A1504004E892A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AC5F59B1D0A1504004E892A /* Assets.xcassets */; };
 		0AC5F59F1D0A1504004E892A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AC5F59D1D0A1504004E892A /* LaunchScreen.storyboard */; };
 		0AD8CE951D0B60E60099C97A /* MentionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD8CE941D0B60E60099C97A /* MentionTableViewController.swift */; };
+		0AD8CE971D0B73340099C97A /* MediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AD8CE961D0B73340099C97A /* MediaTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -43,6 +44,7 @@
 		0AC5F59E1D0A1504004E892A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0AC5F5A01D0A1504004E892A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AD8CE941D0B60E60099C97A /* MentionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionTableViewController.swift; sourceTree = "<group>"; };
+		0AD8CE961D0B73340099C97A /* MediaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MediaTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				0A5F4D1D1D0A16F200F1D9D0 /* TweetTableViewController.swift */,
 				0A5F4D231D0A214B00F1D9D0 /* TweetTableViewCell.swift */,
 				0AD8CE941D0B60E60099C97A /* MentionTableViewController.swift */,
+				0AD8CE961D0B73340099C97A /* MediaTableViewCell.swift */,
 				0A5F4D1C1D0A164500F1D9D0 /* Supporting Files */,
 			);
 			path = Smashtag;
@@ -171,6 +174,7 @@
 			files = (
 				0AD8CE951D0B60E60099C97A /* MentionTableViewController.swift in Sources */,
 				0AC5F5951D0A1504004E892A /* AppDelegate.swift in Sources */,
+				0AD8CE971D0B73340099C97A /* MediaTableViewCell.swift in Sources */,
 				0A5F4D1E1D0A16F200F1D9D0 /* TweetTableViewController.swift in Sources */,
 				0A5F4D241D0A214B00F1D9D0 /* TweetTableViewCell.swift in Sources */,
 			);
