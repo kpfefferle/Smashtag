@@ -22,6 +22,12 @@ class TweetTableViewCell: UITableViewCell {
         }
     }
 
+    private let hightlights = [
+        "hashtags": UIColor.redColor(),
+        "urls": UIColor.blueColor(),
+        "userMentions": UIColor.purpleColor()
+    ]
+
     private func updateUI() {
 
         // reset any existing tweet information
@@ -33,12 +39,13 @@ class TweetTableViewCell: UITableViewCell {
         // load new information from out tweet (if any)
         if let tweet = self.tweet {
 
-            tweetTextLabel?.text = tweet.text
-            if tweetTextLabel?.text != nil {
-                for _ in tweet.media {
-                    tweetTextLabel.text! += " 📷"
+            let attributedTweetText = NSMutableAttributedString(string: tweet.text)
+            for (key, color) in hightlights {
+                for mention in tweet.valueForKey(key) as! [Twitter.Mention] {
+                    attributedTweetText.addAttribute(NSForegroundColorAttributeName, value: color, range: mention.nsrange)
                 }
             }
+            tweetTextLabel?.attributedText = attributedTweetText
 
             tweetScreenNameLabel?.text = "\(tweet.user)" // tweet.user.description
 
