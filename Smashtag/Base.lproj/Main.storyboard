@@ -173,8 +173,22 @@
                     <view key="view" contentMode="scaleToFill" id="N2a-RX-tCW">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NUl-1x-BoZ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="NUl-1x-BoZ" firstAttribute="top" secondItem="N2a-RX-tCW" secondAttribute="top" id="5Ph-17-Nzo"/>
+                            <constraint firstAttribute="trailing" secondItem="NUl-1x-BoZ" secondAttribute="trailing" id="5hu-Ve-tIq"/>
+                            <constraint firstItem="NUl-1x-BoZ" firstAttribute="leading" secondItem="N2a-RX-tCW" secondAttribute="leading" id="Mdp-53-Wz9"/>
+                            <constraint firstItem="NUl-1x-BoZ" firstAttribute="bottom" secondItem="Uad-Vn-iGG" secondAttribute="top" id="PMg-5R-Ozd"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="scrollView" destination="NUl-1x-BoZ" id="95j-8a-NmZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sch-vU-qib" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

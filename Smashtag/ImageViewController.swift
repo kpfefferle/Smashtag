@@ -29,6 +29,8 @@ class ImageViewController: UIViewController {
         }
     }
 
+    @IBOutlet private weak var scrollView: UIScrollView!
+
     private var imageView = UIImageView()
 
     private var image: UIImage? {
@@ -38,12 +40,13 @@ class ImageViewController: UIViewController {
         set {
             imageView.image = newValue
             imageView.sizeToFit()
+            scrollView?.contentSize = imageView.frame.size
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(imageView)
+        scrollView.addSubview(imageView)
     }
 
 }
