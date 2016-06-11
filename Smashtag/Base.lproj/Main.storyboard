@@ -124,6 +124,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="aF0-X7-3bQ" kind="show" identifier="Show Tweets from Recent" id="0Et-BF-agU"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -290,6 +293,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="EcD-Ya-Ig3"/>
+        <segue reference="0Et-BF-agU"/>
     </inferredMetricsTieBreakers>
 </document>

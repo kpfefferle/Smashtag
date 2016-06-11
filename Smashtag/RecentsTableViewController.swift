@@ -40,18 +40,21 @@ class RecentsTableViewController: UITableViewController {
         return cell
     }
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == Storyboard.TweetsSegueIdentifier {
+            if let ttvc = segue.destinationViewController as? TweetTableViewController,
+              let indexPath = tableView.indexPathForSelectedRow {
+                ttvc.searchText = recentSearches[indexPath.row]
+            }
+        }
     }
-    */
+
 
     private struct Storyboard {
         private static let RecentCellIdentifier = "Recent Cell"
+        private static let TweetsSegueIdentifier = "Show Tweets from Recent"
     }
 
 }
