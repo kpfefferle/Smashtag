@@ -87,7 +87,7 @@ class MentionTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         switch sectionTypes[indexPath.section].key {
         case "media":
-            break
+            performSegueWithIdentifier(Storyboard.ImageSegueIdentifier, sender: self)
         case "urls":
             let mention = mentions[indexPath.section][indexPath.row]
             if let url = NSURL(string: mention.keyword) {
@@ -116,5 +116,6 @@ class MentionTableViewController: UITableViewController {
         static let MediaCellIdentifier = "Media Cell"
         static let MentionCellIdentifier = "Mention Cell"
         static let TweetsSegueIdentifier = "Show Tweets"
+        static let ImageSegueIdentifier = "Show Image"
     }
 }

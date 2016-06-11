@@ -155,11 +155,30 @@
                     </tableView>
                     <connections>
                         <segue destination="aF0-X7-3bQ" kind="show" identifier="Show Tweets" id="xde-H3-URS"/>
+                        <segue destination="r40-NW-sg3" kind="show" identifier="Show Image" id="fLE-uQ-MLw"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e5T-Li-dPN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2198" y="368"/>
+        </scene>
+        <!--Image-->
+        <scene sceneID="glA-LT-EXf">
+            <objects>
+                <viewController title="Image" id="r40-NW-sg3" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Vzd-ME-NCA"/>
+                        <viewControllerLayoutGuide type="bottom" id="Uad-Vn-iGG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="N2a-RX-tCW">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sch-vU-qib" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2988" y="368"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="j99-Il-fTP">
