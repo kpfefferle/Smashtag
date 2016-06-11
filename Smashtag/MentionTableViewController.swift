@@ -80,7 +80,7 @@ class MentionTableViewController: UITableViewController {
         if let mediaItem = mentionForIndexPath(indexPath) as? Twitter.MediaItem {
             return tableView.frame.width / CGFloat(mediaItem.aspectRatio)
         } else {
-            return tableView.rowHeight
+            return UITableViewAutomaticDimension
         }
     }
 
