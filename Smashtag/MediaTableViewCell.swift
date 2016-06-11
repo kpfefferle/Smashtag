@@ -29,6 +29,7 @@ class MediaTableViewCell: UITableViewCell {
                     if let imageData = contentsOfURL
                       where mediaImageURL == weakSelf?.mediaItem?.url {
                         weakSelf?.mediaImage?.image = UIImage(data: imageData)
+                        weakSelf?.mediaImage.sizeToFit()
                     }
                 }
             }

@@ -15,14 +15,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <textField key="tableHeaderView" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Twitter Search Text" textAlignment="natural" minimumFontSize="17" id="5KR-kW-6MG">
-                            <rect key="frame" x="0.0" y="64" width="600" height="30"/>
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Tweet" rowHeight="150" id="a0J-Ae-wvz" customClass="TweetTableViewCell" customModule="Smashtag" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="122" width="600" height="150"/>
+                                <rect key="frame" x="0.0" y="58" width="600" height="150"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a0J-Ae-wvz" id="Uzq-aX-ZvQ">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="149.5"/>
@@ -109,7 +109,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Media Cell" rowHeight="260" id="YON-nY-9EW" customClass="MediaTableViewCell" customModule="Smashtag" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="600" height="260"/>
+                                <rect key="frame" x="0.0" y="28" width="600" height="260"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YON-nY-9EW" id="cub-cv-C6U">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="259.5"/>
@@ -131,7 +131,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="Mention Cell" textLabel="Ls2-gC-Cdq" style="IBUITableViewCellStyleDefault" id="4PL-CA-Xjq">
-                                <rect key="frame" x="0.0" y="352" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="288" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4PL-CA-Xjq" id="shR-qX-apC">
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
@@ -175,15 +175,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NUl-1x-BoZ">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="NUl-1x-BoZ" firstAttribute="top" secondItem="Vzd-ME-NCA" secondAttribute="bottom" id="6Un-Wz-6Um"/>
-                            <constraint firstAttribute="trailing" secondItem="NUl-1x-BoZ" secondAttribute="trailing" id="7zc-5W-QTL"/>
-                            <constraint firstItem="NUl-1x-BoZ" firstAttribute="leading" secondItem="N2a-RX-tCW" secondAttribute="leading" id="AnW-DJ-5eJ"/>
-                            <constraint firstItem="NUl-1x-BoZ" firstAttribute="bottom" secondItem="Uad-Vn-iGG" secondAttribute="top" id="QkI-jb-XQo"/>
+                            <constraint firstAttribute="trailing" secondItem="NUl-1x-BoZ" secondAttribute="trailing" id="Uc3-oy-Xas"/>
+                            <constraint firstItem="NUl-1x-BoZ" firstAttribute="bottom" secondItem="Uad-Vn-iGG" secondAttribute="top" id="epD-vw-EsC"/>
+                            <constraint firstItem="NUl-1x-BoZ" firstAttribute="top" secondItem="N2a-RX-tCW" secondAttribute="top" id="k2Q-sE-DQs"/>
+                            <constraint firstItem="NUl-1x-BoZ" firstAttribute="leading" secondItem="N2a-RX-tCW" secondAttribute="leading" id="nW1-jm-QL9"/>
                         </constraints>
                     </view>
                     <connections>
@@ -214,6 +214,6 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="EcD-Ya-Ig3"/>
+        <segue reference="xde-H3-URS"/>
     </inferredMetricsTieBreakers>
 </document>
