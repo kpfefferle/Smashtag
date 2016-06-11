@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A21B2671D0C90A7000F1610 /* RecentSearches.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A21B2661D0C90A7000F1610 /* RecentSearches.swift */; };
+		0A21B2691D0C9C65000F1610 /* RecentsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A21B2681D0C9C65000F1610 /* RecentsTableViewController.swift */; };
 		0A5F4D1E1D0A16F200F1D9D0 /* TweetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5F4D1D1D0A16F200F1D9D0 /* TweetTableViewController.swift */; };
 		0A5F4D201D0A1A5700F1D9D0 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5F4D1F1D0A1A5700F1D9D0 /* Twitter.framework */; };
 		0A5F4D211D0A1A5700F1D9D0 /* Twitter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A5F4D1F1D0A1A5700F1D9D0 /* Twitter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		0A21B2661D0C90A7000F1610 /* RecentSearches.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentSearches.swift; sourceTree = "<group>"; };
+		0A21B2681D0C9C65000F1610 /* RecentsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentsTableViewController.swift; sourceTree = "<group>"; };
 		0A5F4D1D1D0A16F200F1D9D0 /* TweetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewController.swift; sourceTree = "<group>"; };
 		0A5F4D1F1D0A1A5700F1D9D0 /* Twitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = Twitter.framework; path = "/Users/kevin/Library/Developer/Xcode/DerivedData/Smashtag-cuazstpdzjfuheejpsdtwsjkkktp/Build/Products/Debug-iphoneos/Twitter.framework"; sourceTree = "<absolute>"; };
 		0A5F4D231D0A214B00F1D9D0 /* TweetTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetTableViewCell.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 				0AD8CE941D0B60E60099C97A /* MentionTableViewController.swift */,
 				0AD8CE961D0B73340099C97A /* MediaTableViewCell.swift */,
 				0AD8CE981D0B978B0099C97A /* ImageViewController.swift */,
+				0A21B2681D0C9C65000F1610 /* RecentsTableViewController.swift */,
 				0A21B2661D0C90A7000F1610 /* RecentSearches.swift */,
 				0A5F4D1C1D0A164500F1D9D0 /* Supporting Files */,
 			);
@@ -182,6 +185,7 @@
 				0AC5F5951D0A1504004E892A /* AppDelegate.swift in Sources */,
 				0AD8CE971D0B73340099C97A /* MediaTableViewCell.swift in Sources */,
 				0A21B2671D0C90A7000F1610 /* RecentSearches.swift in Sources */,
+				0A21B2691D0C9C65000F1610 /* RecentsTableViewController.swift in Sources */,
 				0A5F4D1E1D0A16F200F1D9D0 /* TweetTableViewController.swift in Sources */,
 				0AD8CE991D0B978B0099C97A /* ImageViewController.swift in Sources */,
 				0A5F4D241D0A214B00F1D9D0 /* TweetTableViewCell.swift in Sources */,

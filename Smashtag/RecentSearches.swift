@@ -25,7 +25,6 @@ struct RecentSearches {
             newArray.removeLast()
         }
         defaults.setObject(newArray, forKey: key)
-        NSLog("Updated list: \(list)")
     }
 
 }
