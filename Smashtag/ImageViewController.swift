@@ -31,10 +31,12 @@ class ImageViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet private weak var scrollView: UIScrollView! {
         didSet {
+            scrollView.contentSize = imageView.frame.size
+            scrollView.zoomToRect(imageView.frame, animated: false)
+
             scrollView.delegate = self
             scrollView.minimumZoomScale = 0.25
             scrollView.maximumZoomScale = 2.0
-            zoomToImage()
         }
     }
 
@@ -51,13 +53,9 @@ class ImageViewController: UIViewController, UIScrollViewDelegate {
         set {
             imageView.image = newValue
             imageView.sizeToFit()
-            zoomToImage()
+            scrollView?.contentSize = imageView.frame.size
+            scrollView?.zoomToRect(imageView.frame, animated: false)
         }
-    }
-
-    private func zoomToImage() {
-        scrollView?.contentSize = imageView.frame.size
-        scrollView?.zoomToRect(imageView.frame, animated: false)
     }
 
     override func viewDidLoad() {
