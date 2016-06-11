@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SafariServices
 import Twitter
 
 class MentionTableViewController: UITableViewController {
@@ -87,14 +88,22 @@ class MentionTableViewController: UITableViewController {
     // MARK: - Navigation
 
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        switch indexPath.section {
-        case 0:
+        switch sectionTypes[indexPath.section].key {
+        case "media":
             break
-        case 3:
-            break
+        case "urls":
+            let mention = mentions[indexPath.section][indexPath.row]
+            if let url = NSURL(string: mention.keyword) {
+                openURLWithSafariVC(url)
+            }
         default:
             performSegueWithIdentifier(Storyboard.TweetsSegueIdentifier, sender: self)
         }
+    }
+
+    private func openURLWithSafariVC(url: NSURL) {
+        let svc = SFSafariViewController(URL: url)
+        self.presentViewController(svc, animated: true, completion: nil)
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
