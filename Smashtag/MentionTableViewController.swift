@@ -35,9 +35,6 @@ class MentionTableViewController: UITableViewController {
                     mentions.append(mentionArray)
                 }
             }
-            if let userScreenName = tweet?.user.screenName {
-                title = "@\(userScreenName)"
-            }
         }
     }
 
