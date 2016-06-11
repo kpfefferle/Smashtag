@@ -10,10 +10,40 @@ import UIKit
 
 class ImageViewController: UIViewController {
 
+    var imageURL: NSURL? {
+        didSet {
+            image = nil
+            fetchImage()
+        }
+    }
+
+    private func fetchImage() {
+        if let url = imageURL {
+            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [ weak weakSelf = self ] in
+                if let imageData = NSData(contentsOfURL: url) {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        weakSelf?.image = UIImage(data: imageData)
+                    }
+                }
+            }
+        }
+    }
+
+    private var imageView = UIImageView()
+
+    private var image: UIImage? {
+        get {
+            return imageView.image
+        }
+        set {
+            imageView.image = newValue
+            imageView.sizeToFit()
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        view.addSubview(imageView)
     }
 
 }

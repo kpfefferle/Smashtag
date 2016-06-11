@@ -20,6 +20,10 @@ class MentionTableViewController: UITableViewController {
         }
     }
 
+    private func mentionForIndexPath(indexPath: NSIndexPath) -> AnyObject? {
+        return mentions[indexPath.section][indexPath.row]
+    }
+
     private let sectionTypes = [
         (key: "media", title: "Images", cell: Storyboard.MediaCellIdentifier),
         (key: "hashtags", title: "Hashtags", cell: Storyboard.MentionCellIdentifier),
@@ -59,7 +63,7 @@ class MentionTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(sectionTypes[indexPath.section].cell, forIndexPath: indexPath)
 
-        let mention = mentions[indexPath.section][indexPath.row]
+        let mention = mentionForIndexPath(indexPath)
 
         if let mediaItem = mention as? Twitter.MediaItem {
             if let cell = cell as? MediaTableViewCell {
@@ -73,9 +77,7 @@ class MentionTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let mention = mentions[indexPath.section][indexPath.row]
-
-        if let mediaItem = mention as? Twitter.MediaItem {
+        if let mediaItem = mentionForIndexPath(indexPath) as? Twitter.MediaItem {
             return tableView.frame.width / CGFloat(mediaItem.aspectRatio)
         } else {
             return tableView.rowHeight
@@ -89,8 +91,8 @@ class MentionTableViewController: UITableViewController {
         case "media":
             performSegueWithIdentifier(Storyboard.ImageSegueIdentifier, sender: self)
         case "urls":
-            let mention = mentions[indexPath.section][indexPath.row]
-            if let url = NSURL(string: mention.keyword) {
+            if let mention = mentionForIndexPath(indexPath),
+              let url = NSURL(string: mention.keyword) {
                 openURLWithSafariVC(url)
             }
         default:
@@ -104,9 +106,14 @@ class MentionTableViewController: UITableViewController {
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let tweetVC = segue.destinationViewController as? TweetTableViewController,
+        if let imageVC = segue.destinationViewController as? ImageViewController,
           let indexPath = tableView.indexPathForSelectedRow,
-          let mention = mentions[indexPath.section][indexPath.row] as? Twitter.Mention
+          let mediaItem = mentionForIndexPath(indexPath) as? Twitter.MediaItem
+          where segue.identifier == Storyboard.ImageSegueIdentifier {
+            imageVC.imageURL = mediaItem.url
+        } else if let tweetVC = segue.destinationViewController as? TweetTableViewController,
+          let indexPath = tableView.indexPathForSelectedRow,
+          let mention = mentionForIndexPath(indexPath) as? Twitter.Mention
           where segue.identifier == Storyboard.TweetsSegueIdentifier {
             tweetVC.searchText = mention.keyword
         }
