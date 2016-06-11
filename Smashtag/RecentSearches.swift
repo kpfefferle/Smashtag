@@ -18,7 +18,7 @@ struct RecentSearches {
     }
 
     static func add(term: String) {
-        var newArray = list
+        var newArray = list.filter({ term.caseInsensitiveCompare($0) != .OrderedSame })
         newArray.insert(term, atIndex: 0)
         defaults.setObject(newArray, forKey: key)
         NSLog("Updated list: \(list)")
