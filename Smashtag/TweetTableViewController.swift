@@ -39,8 +39,10 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     private func searchForTweets() {
         if let request = twitterRequest {
             lastTwitterRequest = request
+            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
             request.fetchTweets { [ weak weakSelf = self ] newTweets in
                 dispatch_async(dispatch_get_main_queue()) {
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
                     if request == weakSelf?.lastTwitterRequest &&
                       !newTweets.isEmpty {
                         weakSelf?.tweets.insert(newTweets, atIndex: 0)
