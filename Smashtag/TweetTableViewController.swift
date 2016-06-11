@@ -96,7 +96,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let destinationVC = segue.destinationViewController as? MentionTableViewController,
-          let indexPath = tableView?.indexPathForSelectedRow
+          let indexPath = tableView.indexPathForSelectedRow
           where segue.identifier == Storyboard.ShowMentionsSegue {
             destinationVC.tweet = tweets[indexPath.section][indexPath.row]
         }

@@ -84,18 +84,31 @@ class MentionTableViewController: UITableViewController {
         }
     }
 
-    /*
     // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        switch indexPath.section {
+        case 0:
+            break
+        case 3:
+            break
+        default:
+            performSegueWithIdentifier(Storyboard.TweetsSegueIdentifier, sender: self)
+        }
     }
-    */
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let tweetVC = segue.destinationViewController as? TweetTableViewController,
+          let indexPath = tableView.indexPathForSelectedRow,
+          let mention = mentions[indexPath.section][indexPath.row] as? Twitter.Mention
+          where segue.identifier == Storyboard.TweetsSegueIdentifier {
+            tweetVC.searchText = mention.keyword
+        }
+    }
 
     private struct Storyboard {
         static let MediaCellIdentifier = "Media Cell"
         static let MentionCellIdentifier = "Mention Cell"
+        static let TweetsSegueIdentifier = "Show Tweets"
     }
 }
