@@ -165,7 +165,7 @@
         <!--Image-->
         <scene sceneID="glA-LT-EXf">
             <objects>
-                <viewController title="Image" id="r40-NW-sg3" sceneMemberID="viewController">
+                <viewController title="Image" id="r40-NW-sg3" customClass="ImageViewController" customModule="Smashtag" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Vzd-ME-NCA"/>
                         <viewControllerLayoutGuide type="bottom" id="Uad-Vn-iGG"/>
