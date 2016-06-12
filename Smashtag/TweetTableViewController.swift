@@ -55,12 +55,34 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         }
     }
 
+    @objc private func handleRefresh(sender: AnyObject?) {
+        if let request = lastTwitterRequest?.requestForNewer {
+            lastTwitterRequest = request
+            request.fetchTweets { [ weak weakSelf = self ] newTweets in
+                dispatch_async(dispatch_get_main_queue()) {
+                    if request == weakSelf?.lastTwitterRequest &&
+                        !newTweets.isEmpty {
+                        weakSelf?.tweets.insert(newTweets, atIndex: 0)
+                    }
+                    weakSelf?.refreshControl?.endRefreshing()
+               }
+            }
+        } else {
+            refreshControl?.endRefreshing()
+        }
+    }
+
     // MARK: View
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         tableView.estimatedRowHeight = tableView.rowHeight
         tableView.rowHeight = UITableViewAutomaticDimension
+
+        let refresher = UIRefreshControl()
+        refresher.addTarget(self, action: #selector(TweetTableViewController.handleRefresh(_:)), forControlEvents: .ValueChanged)
+        refreshControl = refresher
     }
 
     // MARK: - UITableViewDataSource
