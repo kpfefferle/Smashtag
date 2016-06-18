@@ -42,27 +42,27 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
     private func searchForTweets() {
         if let request = twitterRequest {
             lastTwitterRequest = request
-            UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+            UIApplication.shared().isNetworkActivityIndicatorVisible = true
             request.fetchTweets { [ weak weakSelf = self ] newTweets in
-                dispatch_async(dispatch_get_main_queue()) {
-                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                DispatchQueue.main.async {
+                    UIApplication.shared().isNetworkActivityIndicatorVisible = false
                     if request == weakSelf?.lastTwitterRequest &&
                       !newTweets.isEmpty {
-                        weakSelf?.tweets.insert(newTweets, atIndex: 0)
+                        weakSelf?.tweets.insert(newTweets, at: 0)
                     }
                 }
             }
         }
     }
 
-    @objc private func handleRefresh(sender: AnyObject?) {
+    @objc private func handleRefresh(_ sender: AnyObject?) {
         if let request = lastTwitterRequest?.requestForNewer {
             lastTwitterRequest = request
             request.fetchTweets { [ weak weakSelf = self ] newTweets in
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                     if request == weakSelf?.lastTwitterRequest &&
                         !newTweets.isEmpty {
-                        weakSelf?.tweets.insert(newTweets, atIndex: 0)
+                        weakSelf?.tweets.insert(newTweets, at: 0)
                     }
                     weakSelf?.refreshControl?.endRefreshing()
                }
@@ -81,22 +81,22 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         tableView.rowHeight = UITableViewAutomaticDimension
 
         let refresher = UIRefreshControl()
-        refresher.addTarget(self, action: #selector(TweetTableViewController.handleRefresh(_:)), forControlEvents: .ValueChanged)
+        refresher.addTarget(self, action: #selector(TweetTableViewController.handleRefresh(_:)), for: .valueChanged)
         refreshControl = refresher
     }
 
     // MARK: - UITableViewDataSource
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return tweets.count
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tweets[section].count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(Storyboard.TweetCellIdentifier, forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: Storyboard.TweetCellIdentifier, for: indexPath)
 
         let tweet = tweets[indexPath.section][indexPath.row]
         if let tweetCell = cell as? TweetTableViewCell {
@@ -113,7 +113,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
         }
     }
 
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         searchText = textField.text
         return true
@@ -121,7 +121,7 @@ class TweetTableViewController: UITableViewController, UITextFieldDelegate {
 
     // MARK: - Navigation
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
         if let destinationVC = segue.destinationViewController as? MentionTableViewController,
           let indexPath = tableView.indexPathForSelectedRow
           where segue.identifier == Storyboard.ShowMentionsSegue {

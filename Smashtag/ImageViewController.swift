@@ -10,7 +10,7 @@ import UIKit
 
 class ImageViewController: UIViewController, UIScrollViewDelegate {
 
-    var imageURL: NSURL? {
+    var imageURL: URL? {
         didSet {
             image = nil
             fetchImage()
@@ -19,9 +19,9 @@ class ImageViewController: UIViewController, UIScrollViewDelegate {
 
     private func fetchImage() {
         if let url = imageURL {
-            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [ weak weakSelf = self ] in
-                if let imageData = NSData(contentsOfURL: url) {
-                    dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.global(attributes: .qosUserInitiated).async { [ weak weakSelf = self ] in
+                if let imageData = try? Data(contentsOf: url) {
+                    DispatchQueue.main.async {
                         weakSelf?.image = UIImage(data: imageData)
                     }
                 }
@@ -38,7 +38,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate {
         }
     }
 
-    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
     }
 
@@ -57,7 +57,7 @@ class ImageViewController: UIViewController, UIScrollViewDelegate {
 
     private func zoomToImage() {
         scrollView?.contentSize = imageView.frame.size
-        scrollView?.zoomToRect(imageView.frame, animated: false)
+        scrollView?.zoom(to: imageView.frame, animated: false)
     }
 
     override func viewDidLoad() {

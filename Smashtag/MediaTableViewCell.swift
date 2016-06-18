@@ -23,9 +23,9 @@ class MediaTableViewCell: UITableViewCell {
         mediaImage?.image = nil
 
         if let mediaImageURL = mediaItem?.url {
-            dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [ weak weakSelf = self ] in
-                let contentsOfURL = NSData(contentsOfURL: mediaImageURL)
-                dispatch_async(dispatch_get_main_queue()) {
+            DispatchQueue.global(attributes: .qosUserInitiated).async { [ weak weakSelf = self ] in
+                let contentsOfURL = try? Data(contentsOf: mediaImageURL)
+                DispatchQueue.main.async {
                     if let imageData = contentsOfURL
                       where mediaImageURL == weakSelf?.mediaItem?.url {
                         weakSelf?.mediaImage?.image = UIImage(data: imageData)

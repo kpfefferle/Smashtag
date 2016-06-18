@@ -23,9 +23,9 @@ class TweetTableViewCell: UITableViewCell {
     }
 
     private let hightlights = [
-        "hashtags": UIColor.redColor(),
-        "urls": UIColor.blueColor(),
-        "userMentions": UIColor.purpleColor()
+        "hashtags": UIColor.red(),
+        "urls": UIColor.blue(),
+        "userMentions": UIColor.purple()
     ]
 
     private func updateUI() {
@@ -41,21 +41,21 @@ class TweetTableViewCell: UITableViewCell {
 
             let attributedTweetText = NSMutableAttributedString(string: tweet.text)
             for (key, color) in hightlights {
-                for mention in tweet.valueForKey(key) as! [Twitter.Mention] {
+                for mention in tweet.value(forKey: key) as! [Twitter.Mention] {
                     attributedTweetText.addAttribute(NSForegroundColorAttributeName, value: color, range: mention.nsrange)
                 }
             }
             for _ in tweet.media {
-                attributedTweetText.appendAttributedString(NSAttributedString(string: " 📷"))
+                attributedTweetText.append(AttributedString(string: " 📷"))
             }
             tweetTextLabel?.attributedText = attributedTweetText
 
             tweetScreenNameLabel?.text = "\(tweet.user)" // tweet.user.description
 
             if let profileImageURL = tweet.user.profileImageURL {
-                dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INITIATED, 0)) { [ weak weakSelf = self ] in
-                    let contentsOfURL = NSData(contentsOfURL: profileImageURL)
-                    dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.global(attributes: .qosUserInitiated).async { [ weak weakSelf = self ] in
+                    let contentsOfURL = try? Data(contentsOf: profileImageURL)
+                    DispatchQueue.main.async {
                         if let imageData = contentsOfURL
                           where profileImageURL == weakSelf?.tweet?.user.profileImageURL {
                             weakSelf?.tweetProfileImageView?.image = UIImage(data: imageData)
@@ -64,13 +64,13 @@ class TweetTableViewCell: UITableViewCell {
                 }
             }
 
-            let formatter = NSDateFormatter()
-            if NSDate().timeIntervalSinceDate(tweet.created) > 24*60*60 {
-                formatter.dateStyle = NSDateFormatterStyle.ShortStyle
+            let formatter = DateFormatter()
+            if Date().timeIntervalSince(tweet.created) > 24*60*60 {
+                formatter.dateStyle = DateFormatter.Style.shortStyle
             } else {
-                formatter.timeStyle = NSDateFormatterStyle.ShortStyle
+                formatter.timeStyle = DateFormatter.Style.shortStyle
             }
-            tweetCreatedLabel?.text = formatter.stringFromDate(tweet.created)
+            tweetCreatedLabel?.text = formatter.string(from: tweet.created)
         }
     }
 

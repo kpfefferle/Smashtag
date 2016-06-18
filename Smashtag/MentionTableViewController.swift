@@ -20,8 +20,8 @@ class MentionTableViewController: UITableViewController {
         }
     }
 
-    private func mentionForIndexPath(indexPath: NSIndexPath) -> AnyObject? {
-        return mentions[indexPath.section][indexPath.row]
+    private func mentionForIndexPath(_ indexPath: IndexPath) -> AnyObject? {
+        return mentions[(indexPath as NSIndexPath).section][(indexPath as NSIndexPath).row]
     }
 
     private let sectionTypes = [
@@ -35,7 +35,7 @@ class MentionTableViewController: UITableViewController {
         didSet {
             mentions.removeAll()
             for (key,_,_) in sectionTypes {
-                if let mentionArray = tweet?.valueForKey(key) as? [AnyObject] {
+                if let mentionArray = tweet?.value(forKey: key) as? [AnyObject] {
                     mentions.append(mentionArray)
                 }
             }
@@ -44,15 +44,15 @@ class MentionTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return mentions.count
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return mentions[section].count
     }
 
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if mentions[section].count > 0 {
             return sectionTypes[section].title
         } else {
@@ -60,8 +60,8 @@ class MentionTableViewController: UITableViewController {
         }
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(sectionTypes[indexPath.section].cell, forIndexPath: indexPath)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: sectionTypes[indexPath.section].cell, for: indexPath)
 
         let mention = mentionForIndexPath(indexPath)
 
@@ -76,7 +76,7 @@ class MentionTableViewController: UITableViewController {
         return cell
     }
 
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if let mediaItem = mentionForIndexPath(indexPath) as? Twitter.MediaItem {
             return tableView.frame.width / CGFloat(mediaItem.aspectRatio)
         } else {
@@ -86,26 +86,26 @@ class MentionTableViewController: UITableViewController {
 
     // MARK: - Navigation
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch sectionTypes[indexPath.section].key {
         case "media":
-            performSegueWithIdentifier(Storyboard.ImageSegueIdentifier, sender: self)
+            performSegue(withIdentifier: Storyboard.ImageSegueIdentifier, sender: self)
         case "urls":
             if let mention = mentionForIndexPath(indexPath),
-              let url = NSURL(string: mention.keyword) {
+              let url = URL(string: mention.keyword) {
                 openURLWithSafariVC(url)
             }
         default:
-            performSegueWithIdentifier(Storyboard.TweetsSegueIdentifier, sender: self)
+            performSegue(withIdentifier: Storyboard.TweetsSegueIdentifier, sender: self)
         }
     }
 
-    private func openURLWithSafariVC(url: NSURL) {
-        let svc = SFSafariViewController(URL: url)
-        self.presentViewController(svc, animated: true, completion: nil)
+    private func openURLWithSafariVC(_ url: URL) {
+        let svc = SFSafariViewController(url: url)
+        self.present(svc, animated: true, completion: nil)
     }
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
         if let imageVC = segue.destinationViewController as? ImageViewController,
           let indexPath = tableView.indexPathForSelectedRow,
           let mediaItem = mentionForIndexPath(indexPath) as? Twitter.MediaItem
