@@ -48,13 +48,19 @@ class RecentsTableViewController: UITableViewController {
               let indexPath = tableView.indexPathForSelectedRow {
                 ttvc.searchText = recentSearches[indexPath.row]
             }
+        } else if segue.identifier == Storyboard.PopularSegueIdentifier {
+            if let popularTVC = segue.destinationViewController as? PopularTableViewController,
+              let cell = sender as? UITableViewCell,
+              let indexPath = tableView.indexPath(for: cell) {
+                popularTVC.title = recentSearches[indexPath.row]
+            }
         }
     }
-
 
     private struct Storyboard {
         private static let RecentCellIdentifier = "Recent Cell"
         private static let TweetsSegueIdentifier = "Show Tweets from Recent"
+        private static let PopularSegueIdentifier = "Recent to Popular"
     }
 
 }
