@@ -25,7 +25,6 @@ struct RecentSearches {
             newArray.removeLast()
         }
         defaults.set(newArray, forKey: key)
-        NSLog("Added term \(term) to \(newArray)")
     }
 
 }
